@@ -56,3 +56,10 @@ you need a different tool.
   arbitrary restriction.
 - The input state is never mutated. `integrate` copies `y0` before stepping,
   and `integrate_step` returns a fresh list.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
